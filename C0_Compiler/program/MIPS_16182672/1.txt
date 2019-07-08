@@ -1,0 +1,8 @@
+int test(int a){
+	printf(a);
+	return a;	
+}
+void main(){
+	const int a = 0;
+	test();
+}

@@ -1,0 +1,74 @@
+.data
+String0: .asciiz "wertyuiokijhgfdsQEWRTHGGBCFD!@#$%^&*"
+String1: .asciiz "the result is :"
+.text
+subi $sp, $sp, 56
+j main
+test_printstring:
+subi $sp, $sp, 48
+addi $s7, $sp, 48
+la $s0, String0
+move $a0, $s0
+li $v0, 4
+syscall
+jr $ra
+test_printstringandexpr:
+subi $sp, $sp, 48
+addi $s7, $sp, 52
+la $s0, String1
+move $a0, $s0
+li $v0, 4
+syscall
+subi $s0, $s7, 4
+lw $s1, 0($s0)
+move $a0, $s1
+li $v0, 1
+syscall
+jr $ra
+test_printexpr:
+subi $sp, $sp, 48
+addi $s7, $sp, 52
+subi $s0, $s7, 4
+lw $s1, 0($s0)
+move $a0, $s1
+li $v0, 11
+syscall
+jr $ra
+main:
+subi $sp, $sp, 56
+addi $s7, $sp, 56
+li $v0, 5
+syscall
+subi $s0, $s7, 4
+sw $v0, 0($s0)
+li $v0, 12
+syscall
+subi $s0, $s7, 8
+sw $v0, 0($s0)
+sw $ra, 40($sp)
+sw $s7, 44($sp)
+jal test_printstring
+move $sp, $s7
+lw $ra, 40($sp)
+lw $s7, 44($sp)
+subi $sp, $sp, 4
+subi $s0, $s7, 4
+lw $s1, 0($s0)
+sw $s1, 0($sp)
+sw $ra, 44($sp)
+sw $s7, 48($sp)
+jal test_printstringandexpr
+move $sp, $s7
+lw $ra, 40($sp)
+lw $s7, 44($sp)
+subi $sp, $sp, 4
+subi $s0, $s7, 8
+lw $s1, 0($s0)
+sw $s1, 0($sp)
+sw $ra, 44($sp)
+sw $s7, 48($sp)
+jal test_printexpr
+move $sp, $s7
+lw $ra, 40($sp)
+lw $s7, 44($sp)
+jr $ra

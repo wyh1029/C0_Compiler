@@ -1,0 +1,21 @@
+void test_printstring()
+print String0
+ret.
+void test_printstringandexpr()
+para int i
+print String1
+print i
+ret.
+void test_printexpr()
+para char c
+print c
+ret.
+void main()
+scan a
+scan b
+call test_printstring
+push a
+call test_printstringandexpr
+push b
+call test_printexpr
+ret.

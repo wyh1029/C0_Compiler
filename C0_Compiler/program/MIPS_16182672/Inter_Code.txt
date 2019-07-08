@@ -1,0 +1,192 @@
+int factorial()
+para int n
+n <= 1
+BZ label0
+ret 1
+label0:
+$t0 = n - 1
+push $t0
+call factorial
+$t0 = RET
+$t1 = n * $t0
+ret $t1
+ret.
+int mod()
+para int x
+para int y
+$t0 = x / y
+$t0 = $t0 * y
+$t1 = x - $t0
+x = $t1
+ret x
+ret.
+void swap()
+para int x
+para int y
+print String0
+print x
+print String1
+print y
+temp = x
+x = y
+y = temp
+print String2
+print x
+print String3
+print y
+ret.
+void complete_num()
+para int val
+j = val
+label1:
+j < MAX_NUM
+BZ label2
+$t0 = 0 - 1
+n = $t0
+s = j
+i = 1
+label3:
+i < j
+BZ label4
+$t0 = j / i
+$t0 = $t0 * i
+x1 = $t0
+push j
+push i
+call mod
+$t0 = RET
+$t0 == 0
+BZ label5
+$t0 = n + 1
+n = $t0
+$t0 = s - i
+s = $t0
+n >= 128
+BZ label6
+print String4
+label6:
+n < 128
+BZ label7
+k[n] = i
+label7:
+label5:
+$t0 = i + 1
+i = $t0
+GOTO label3
+label4:
+s == 0
+BZ label8
+print String5
+print j
+i = 0
+label9:
+i <= n
+BZ label10
+print String6
+$t0 = k[i]
+print $t0
+$t0 = i + 1
+i = $t0
+GOTO label9
+label10:
+print String7
+label8:
+$t0 = j + 1
+j = $t0
+GOTO label1
+label2:
+print String8
+a = 0
+i = 0
+label11:
+i < MAX_NUM
+BZ label12
+$t0 = a * i
+b = $t0
+$t0 = j * n
+c = $t0
+$t0 = a * i
+a = $t0
+$t0 = a + b
+$t0 = $t0 + c
+a = $t0
+$t0 = i + 1
+i = $t0
+GOTO label11
+label12:
+b = a
+i = 0
+label13:
+i < MAX_NUM
+BZ label14
+$t0 = b + i
+b = $t0
+$t0 = i + 1
+i = $t0
+GOTO label13
+label14:
+print String9
+print b
+print String10
+h = 0
+leap = 1
+m = 2
+label15:
+m <= MAX_NUM
+BZ label16
+$t0 = m / 2
+k2 = $t0
+i = 2
+label17:
+i <= k2
+BZ label18
+$t0 = m / i
+$t0 = $t0 * i
+x2 = $t0
+push m
+push i
+call mod
+$t0 = RET
+$t0 == 0
+BZ label19
+leap = 0
+label19:
+$t0 = i + 1
+i = $t0
+GOTO label17
+label18:
+leap == 1
+BZ label20
+print String11
+print m
+$t0 = h + 1
+h = $t0
+$t0 = h / 10
+$t0 = $t0 * 10
+x2 = $t0
+x2 == h
+BZ label21
+print String12
+label21:
+label20:
+leap = 1
+$t0 = m + 1
+m = $t0
+GOTO label15
+label16:
+print String13
+print h
+ret.
+void main()
+push 10
+call factorial
+$t0 = RET
+n = $t0
+print String14
+print n
+push 5
+push 10
+call swap
+push 2
+call complete_num
+ret.
